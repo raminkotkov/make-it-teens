@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Рамин — начальник нейросетей</title>
+<style>
+:root{--paper:#f3eee4;--ink:#252923;--muted:#605d53;--copper:#884020;--line:#c9bfad;--night:#202a25;--gold:#e8b981}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:85px}body{margin:0;background:var(--paper);color:var(--ink);font:18px/1.75 system-ui,sans-serif}::selection{background:#e8b981;color:#202a25}a{color:var(--copper);text-underline-offset:5px}a:focus-visible{outline:3px solid var(--copper);outline-offset:6px}p{margin:0 0 22px;max-width:68ch}strong{font-weight:650}main,footer{max-width:1220px;margin:auto;padding:0 46px}.topbar{max-width:1220px;margin:auto;padding:24px 46px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);gap:20px}.brand{font-family:Georgia,serif;font-size:24px;color:var(--ink);text-decoration:none}.topbar nav{display:flex;gap:26px}.topbar nav a{font-size:14px;color:var(--ink);text-decoration:none}.topbar nav a:hover{color:var(--copper)}header{padding:76px 0 72px;position:relative;isolation:isolate;border-bottom:1px solid var(--line)}header:after{content:'';position:absolute;right:0;top:48px;width:30%;height:400px;border:1px solid var(--line);border-radius:220px 220px 0 0;background:repeating-linear-gradient(90deg,transparent 0,transparent calc(25% - 1px),#c9bfad88 25%);z-index:-1;opacity:.5;mask-image:linear-gradient(to left,#000,transparent)}.eyebrow{color:var(--copper);font-size:12px;font-weight:700;letter-spacing:.17em;text-transform:uppercase;display:flex;align-items:center;gap:15px}.eyebrow:before{content:'';width:38px;height:2px;background:var(--copper)}h1,h2,h3{font-family:Georgia,'Times New Roman',serif;font-weight:400}h1{font-size:clamp(48px,6.3vw,82px);line-height:1.05;letter-spacing:-.045em;max-width:850px;margin:28px 0 34px}h1 em{font-style:normal;color:var(--copper)}header>p:not(.intro){max-width:650px;color:var(--muted);font-size:17px}.intro{font-size:clamp(20px,2.2vw,27px);line-height:1.5;max-width:850px}.intro strong{font-weight:450}.intro span{display:inline-block}.intro .control{color:var(--copper);border-bottom:2px solid var(--copper)}.button{display:inline-flex;align-items:center;justify-content:space-between;gap:32px;min-height:54px;padding:13px 23px;background:var(--copper);color:#fff9f1;text-decoration:none;font-size:15px;font-weight:650;border:1px solid var(--copper);transition:background .18s,transform .18s,box-shadow .18s}.button:hover{background:#633018;transform:translateY(-2px);box-shadow:0 7px 0 #88402020}header>.button{margin-top:12px}section{padding:65px 0;border-bottom:1px solid var(--line)}h2{font-size:clamp(34px,4vw,48px);line-height:1.15;letter-spacing:-.025em;margin:12px 0 28px}.section-no{color:var(--copper);font-size:12px;letter-spacing:.15em;font-weight:700}section[aria-labelledby=about]{display:grid;grid-template-columns:240px 1fr;column-gap:48px}section[aria-labelledby=about]>h2,section[aria-labelledby=about]>.section-no{grid-column:1}section[aria-labelledby=about]>h2{grid-row:2;align-self:start}section[aria-labelledby=about]>.about-copy{grid-column:2;grid-row:1 / span 3}.about-copy>p:first-child{font-size:25px;line-height:1.5;font-family:Georgia,serif}.principle{padding:24px 26px;border-left:3px solid var(--copper);background:#e7decf;margin:30px 0 0}.grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:32px}.card{padding:34px;background:#faf7f0;border:1px solid var(--line);display:flex;flex-direction:column;position:relative}.card:before{content:'';height:4px;background:var(--copper);position:absolute;left:-1px;right:-1px;top:-1px}.card:nth-child(2):before{background:var(--night)}h3{font-size:32px;line-height:1.2;margin:0 0 16px;letter-spacing:-.025em}.status{align-self:flex-start;padding:4px 10px;border:1px solid var(--line);font-size:12px;letter-spacing:.03em;color:var(--muted);margin-bottom:22px}.card p{font-size:16px;line-height:1.8;color:var(--muted)}.card .project-hook{font-size:23px;line-height:1.4;color:var(--ink);font-family:Georgia,serif;min-height:98px}.card .project-hook strong{font-weight:400}.card .role{font-size:14px;padding-top:18px;border-top:1px solid var(--line)}.card .button{margin-top:auto}.card:nth-child(2) .button{background:var(--night);border-color:var(--night)}.card:nth-child(2) .button:hover{background:#35483d}.section-lead{font-size:21px;max-width:700px}.future-layout{display:grid;grid-template-columns:1fr 1.5fr;gap:48px}.future-layout .section-lead{font:30px/1.35 Georgia,serif}.future-layout p{color:var(--muted)}.future-layout .continuation{color:var(--copper);letter-spacing:.1em;font-size:13px;text-transform:uppercase}section[aria-labelledby=outlook]{background:var(--night);color:var(--paper);padding:60px;margin:32px 0;border:0;position:relative}section[aria-labelledby=outlook] h2{max-width:760px;color:var(--gold)}section[aria-labelledby=outlook] p{color:#e0e1d7;max-width:760px}section[aria-labelledby=outlook] p:last-child{margin:35px 0 0;font:24px Georgia,serif;color:var(--gold)}footer{display:flex;justify-content:space-between;align-items:center;padding-top:20px;padding-bottom:36px;gap:20px}footer a{font-size:18px}footer span{font-size:13px;color:var(--muted)}@media(min-width:900px){header{min-height:660px}}@media(max-width:850px){main,footer{padding-left:26px;padding-right:26px}.topbar{padding:20px 26px}.grid{gap:18px}.card{padding:24px}section[aria-labelledby=about]{grid-template-columns:170px 1fr;gap:24px}.future-layout{gap:25px}.card .project-hook{min-height:130px}section[aria-labelledby=outlook]{padding:38px}}@media(max-width:620px){body{font-size:17px}.topbar nav{gap:16px}.topbar nav a{font-size:12px}.brand{font-size:21px}header{padding:48px 0}header:after{width:45%;height:240px;top:30px}h1{font-size:49px}section{padding:42px 0}.grid,.future-layout,section[aria-labelledby=about]{display:block}.card{margin-top:22px}.card .project-hook{min-height:0}.about-copy{margin-top:24px}.button{min-height:54px}.card .button{margin-top:10px}.intro span{display:block}section[aria-labelledby=outlook]{padding:28px 24px;margin-top:24px}footer{display:block}footer span{display:block;margin-top:14px}.topbar{padding-left:26px;padding-right:26px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+.process{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-top:42px;padding-top:24px;border-top:1px solid var(--line);max-width:650px;font-size:14px}.process span{display:flex;align-items:center;gap:9px}.process b{font-size:24px;color:var(--copper)}.process i{font-style:normal;color:var(--muted)}.project-emblem{height:140px;position:relative;overflow:hidden;margin:-34px -34px 28px;padding:22px 30px;display:flex;align-items:center;gap:20px;background:var(--night);color:var(--gold)}.project-emblem:after{content:'';position:absolute;width:180px;height:180px;border:1px solid #e8b98144;border-radius:50%;right:-30px;top:26px;box-shadow:0 0 0 22px #e8b9810c,0 0 0 44px #e8b9810c}.project-emblem>span{font:78px/1 Georgia,serif}.project-emblem small{max-width:100px;font-size:10px;letter-spacing:.2em;line-height:1.8}.project-emblem>b{position:absolute;right:20px;top:12px;font:55px Georgia,serif;opacity:.2}.tennis-emblem{background:#884020;color:#fff0da}.tennis-emblem>span{font-size:86px}.card .project-hook{min-height:0;margin-top:0;margin-bottom:20px}.card .role{margin-top:auto}.card .button{margin-top:6px}.future-tags{display:flex;gap:12px;flex-wrap:wrap;margin:0 0 24px}.future-tags span{display:flex;align-items:center;gap:12px;border:1px solid var(--line);padding:12px 20px;background:#faf7f0}.future-tags b{font-size:26px;color:var(--copper)}.closing-symbol{position:absolute;right:40px;top:30px;color:var(--gold);font-size:110px;opacity:.18}section[aria-labelledby=outlook] h2{position:relative}header{min-height:0}@media(max-width:850px){.project-emblem{margin:-24px -24px 24px}}@media(max-width:620px){.process{gap:10px;font-size:12px}.process b{font-size:20px}.future-tags span{padding:9px 12px;font-size:14px}.closing-symbol{right:18px;font-size:80px}.project-emblem{height:120px}}
+
+.process{margin-top:18px;padding-top:0;border-top:0}.process i{font-size:12px}.process span{font-size:12px}.process b{font-size:18px}
+</style>
+</head>
+<body>
+<div class="topbar"><a class="brand" href="#top">Рамин.</a><nav aria-label="Основная навигация"><a href="#about">Кто я</a><a href="#work">Проекты ↗</a></nav></div>
+<main>
+<header id="top">
+<div class="eyebrow">Рамин · идеи становятся продуктами</div>
+<h1>Рамин —<br>начальник<br><em>нейросетей.</em></h1>
+<p class="intro"><strong><span>Вы придумываете.</span> <span>ИИ выполняет.</span> <span class="control">Я управляю.</span></strong></p>
+<p>Превращаю идеи в игры, сайты и инструменты с ИИ. Ставлю задачи, направляю нейросети и проверяю результат.</p>
+<a class="button" href="#work">Смотреть проекты <span aria-hidden="true">↗</span></a>
+<div class="process" aria-label="Как я работаю"><span><b aria-hidden="true">✧</b> Идея</span><i aria-hidden="true">→</i><span><b aria-hidden="true">⌘</b> Управление ИИ</span><i aria-hidden="true">→</i><span><b aria-hidden="true">✓</b> Продукт</span></div>
+</header>
+<section aria-labelledby="about">
+<span class="section-no">I / ЧЕЛОВЕК ЗА ИДЕЕЙ</span><h2 id="about">Кто я?</h2>
+<div class="about-copy">
+<p>Меня зовут Рамин.<br><strong>Я управляю ИИ — от задачи до результата.</strong></p>
+<p>Учусь в школе, окончил школу ИИ make it, teens. Игрок в настольный теннис, окончил школу актёрского и ораторского мастерства, начинающий предприниматель.</p>
+<p><strong>Многозадачность — не проблема.</strong></p>
+
+</div>
+</section>
+<section id="work" aria-labelledby="work-title">
+<span class="section-no">II / РЕЗУЛЬТАТ МОЖНО ПРОВЕРИТЬ</span><h2 id="work-title">Мои проекты</h2>
+
+<div class="grid">
+<article class="card">
+<div class="project-emblem game-emblem" aria-hidden="true"><span>♜</span><small>ПУТЬ ПРАВИТЕЛЯ</small><b>01</b></div>
+<h3>Путь Анеллиона</h3><span class="status">Игра · В разработке</span>
+<p class="project-hook"><strong>Знания, которые<br>строят империю.</strong></p>
+<p>Проходи квесты, решай задачи и развивай правителя и его империю.</p>
+<p class="role"><strong>Моя работа:</strong> концепция, задания, игровой механизм, задачи ИИ и отбор вариантов.</p>
+<a class="button" href="../game/index.html">Играть <span aria-hidden="true">↗</span></a>
+</article>
+<article class="card">
+<div class="project-emblem tennis-emblem" aria-hidden="true"><span>◉</span><small>ТОЧНОСТЬ ВЫБОРА</small><b>02</b></div>
+<h3>Table Tennis Advisor</h3><span class="status">Сайт · Настольный теннис</span>
+<p class="project-hook"><strong>Твоя ракетка.<br>Твой стиль.</strong></p>
+<p>Помощник в выборе оснований и накладок под индивидуальный стиль игры.</p>
+<p class="role"><strong>Моя работа:</strong> идея, подбор инвентаря, задачи ИИ и отбор рекомендаций.</p>
+<a class="button" href="https://raminkotkov.github.io/second-racket/">Открыть сайт <span aria-hidden="true">↗</span></a>
+</article>
+</div>
+</section>
+<section aria-labelledby="future-title">
+<span class="section-no">III / ЧТО Я УМЕЮ</span><h2 id="future-title">Мои возможности</h2>
+<div class="future-tags"><span><b aria-hidden="true">⌘</b> ИИ-агенты</span><span><b aria-hidden="true">⊞</b> Плагины</span><span><b aria-hidden="true">♜</b> Игры</span><span><b aria-hidden="true">▤</b> Комикс</span><span><b aria-hidden="true">✎</b> Сценарий</span><span><b aria-hidden="true">↗</b> Сайт</span></div>
+<p>Разные инструменты — для ваших идей и задач.</p>
+</section>
+<section aria-labelledby="outlook">
+<div class="closing-symbol" aria-hidden="true">✧</div>
+<h2 id="outlook">ИИ — это будущее.<br>Я учусь управлять им сегодня.</h2>
+<p>Будущее начинается с вашей идеи.</p>
+<p><strong>Рамин. Начальник нейросетей.</strong></p>
+</section>
+</main>
+<footer><a href="https://teens.make-it.kz">Сделано в make it, teens</a><span>Рамин · Начальник нейросетей</span></footer>
+</body>
+</html>
