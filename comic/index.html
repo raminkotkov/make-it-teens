@@ -1,0 +1,124 @@
+<!doctype html>
+<!--
+  Комикс ученика make it, teens. Страницу кладёт плагин один раз — дальше она твоя.
+  Данные — comic.json; рядом comic.data.js (то же самое для открытия двойным кликом:
+  из file:// браузер не даёт читать comic.json). Картинки — frames/, пути только внутри этой папки.
+-->
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Мой комикс</title>
+  <style>/* Токены стиля make it, teens — PLAN.md К10, с сайта teens.make-it.kz (assets/css/base.css).
+   Единственная копия: панель и шаблон комикса берут файл при сборке.
+   Префикс --mk- — чтобы не пересекаться с переменными стилей SDK (--accent, --radius, --card). */
+:root {
+  --mk-bg: #f2f2f4; --mk-bg-card: #ffffff; --mk-bg-alt: #e8e8ec; --mk-bg-dark: #211f2b;
+  --mk-ink: #2a2a3a; --mk-ink-soft: #64646e; --mk-ink-invert: #f5f1ea; --mk-line: #dcdce2;
+  --mk-accent: #ff6109; --mk-accent-hover: #ee5500; --mk-accent-ink: #ffffff;
+  --mk-blue: #2d6cdf; --mk-blue-soft: #e8efff; --mk-sun: #ffd86b; --mk-warn: #ff8d66;
+  --mk-teens-gradient: linear-gradient(90deg, #6a35ee, #d6336c, #ff4b2b, #ff7a1a);
+  --mk-font: "Open Sans", "Segoe UI", Roboto, sans-serif;
+  --mk-font-head: "Onest", var(--mk-font);
+  --mk-radius: 16px; --mk-radius-sm: 10px;
+  --mk-shadow: 0 14px 40px -18px rgba(42, 42, 58, 0.32);
+}
+/* Тёмная тема Codex: data-theme ставит applyDocumentTheme из SDK. Акценты те же. */
+[data-theme="dark"] {
+  --mk-bg: #211f2b; --mk-ink: #f5f1ea; --mk-bg-card: #2c2a38; --mk-line: #3a3746;
+  /* не из К10: без них кнопки и подписи в тёмной теме сливаются (вёрстка шага 9) */
+  --mk-bg-alt: #3a3746; --mk-ink-soft: #b3ad9f;
+}
+</style>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--mk-bg); color: var(--mk-ink); font-family: var(--mk-font); line-height: 1.5; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 80px; }
+    .pin {
+      display: inline-block; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
+      color: var(--mk-accent-ink); background: var(--mk-accent); border-radius: 999px; padding: 3px 12px;
+    }
+    h1 { font-family: var(--mk-font-head); font-weight: 800; font-size: 32px; line-height: 1.15; margin: 12px 0 6px; }
+    .change { color: var(--mk-ink-soft); margin-bottom: 24px; }
+    .page { background: var(--mk-bg-card); border-radius: var(--mk-radius); box-shadow: var(--mk-shadow); padding: 16px; }
+    .grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; }
+    .frame {
+      position: relative; overflow: hidden;
+      background: #fff; border: 2px solid var(--mk-ink); border-radius: 4px;
+    }
+    .frame[data-variant="full"] { grid-column: 1 / -1; }
+    .frame img { display: block; width: 100%; height: auto; }
+    .frame figcaption {
+      padding: 12px 16px;
+      background: var(--mk-bg-card); color: var(--mk-ink); font-size: 15px; line-height: 1.5;
+    }
+    .page-number { font-size: 12px; color: var(--mk-ink-soft); margin-bottom: 8px; }
+    .thought { margin-top: 10px; font-style: italic; border-left: 3px solid #a79169; padding-left: 12px; }
+    .inscription { margin-top: 10px; color: var(--mk-ink-soft); }
+    .empty { text-align: center; color: var(--mk-ink-soft); padding: 48px 24px; }
+    .empty p + p { margin-top: 8px; font-size: 14px; }
+    footer { margin-top: 24px; text-align: center; font-size: 13px; color: var(--mk-ink-soft); }
+    footer b { background: var(--mk-teens-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <span class="pin">Комикс</span>
+  <h1 id="title">Мой комикс</h1>
+  <p class="change" id="change"></p>
+  <div class="page" id="page"></div>
+  <footer>сделано в <b>make it, teens</b></footer>
+</div>
+<script src="comic.data.js"></script>
+<script>
+  // Ритм ленты, как в курсе: целый кадр → два половинных → целый…; одинокий последний — целый.
+  function variant(i, total) {
+    const pos = i % 3;
+    return pos === 0 || (pos === 1 && i === total - 1) ? 'full' : 'half';
+  }
+
+  function render(comic) {
+    const page = document.getElementById('page');
+    const frames = (comic && comic.frames) || [];
+    const story = (comic && comic.story) || [];
+    if (comic && comic.title) {
+      document.getElementById('title').textContent = comic.title;
+      document.title = comic.title;
+    }
+    if (comic && comic.change) document.getElementById('change').textContent = 'Что изменилось: ' + comic.change;
+    if (frames.length === 0) {
+      page.innerHTML = '<div class="empty"><p>Здесь появится твой комикс.</p><p>Сначала придумаешь историю, потом нарисуешь кадры.</p></div>';
+      return;
+    }
+    const grid = document.createElement('div');
+    grid.className = 'grid';
+    frames.forEach(function (frame, i) {
+      const figure = document.createElement('figure');
+      figure.className = 'frame';
+      figure.dataset.variant = variant(i, frames.length);
+      const img = document.createElement('img');
+      img.src = frame.image;
+      img.alt = 'Страница ' + (i + 1) + ': ' + (story[frame.scene]?.title || '');
+      img.loading = i < 2 ? 'eager' : 'lazy';
+      if (i === 1) { img.style.aspectRatio = '3 / 2'; img.style.objectFit = 'cover'; img.style.objectPosition = 'center 12%'; }
+      figure.append(img);
+      const scene = story[frame.scene];
+      if (scene && scene.text) {
+        const caption = document.createElement('figcaption');
+        const narration = document.createElement('p');
+        narration.textContent = scene.text;
+        caption.append(narration);
+        if (scene.inscription) { const inscription = document.createElement('p'); inscription.className = 'inscription'; inscription.textContent = 'На табличке: «' + scene.inscription + '»'; caption.append(inscription); }
+        if (scene.thought) { const thought = document.createElement('p'); thought.className = 'thought'; thought.textContent = '«' + scene.thought + '»'; caption.append(thought); }
+        figure.append(caption);
+      }
+      grid.append(figure);
+    });
+    page.replaceChildren(grid);
+  }
+
+  if (window.COMIC) render(window.COMIC);
+  else fetch('comic.json').then(function (r) { return r.json(); }).then(render).catch(function () { render(null); });
+</script>
+</body>
+</html>
